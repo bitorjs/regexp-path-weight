@@ -10,8 +10,15 @@ module.exports = function pathWeigth(path) {
     } else {
       let ind = item.indexOf(':');
       if (ind > -1) {
-        base *= 0.9;
-        base *= Math.pow(0.9, ind);
+        let cellWeigth = base;
+        base *= Math.pow(0.9, ind + 1);
+        if (item.match(/\?$/) !== null) {
+          // base += cellWeigth * 0.09 * 0.09;
+        } else if (item.match(/\+$/) !== null) {
+          // base += cellWeigth * 0.09 * 1.01;
+        } else if (item.match(/\*$/) !== null) {
+          // base += cellWeigth * 0.09 * 1.02;
+        }
       } else {
         base *= 0.1;
       }

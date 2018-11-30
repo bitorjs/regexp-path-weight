@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/bitorjs/regexp-path-weight/issues"
   },
-  "homepage": "https://github.com/bitorjs/regexp-path-weight#readme"
+  "homepage": "https://github.com/bitorjs/regexp-path-weight#readme",
+  "devDependencies": {
+    "path-to-regexp": "^2.4.0"
+  }
 }
