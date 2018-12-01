@@ -34,30 +34,101 @@ for (let i = 0; i < ori.length; i++) {
 
 ori = [
   '*',
-  "/:id",
+  "/:page",
+  "/sfdsd",
   "/:page?",
   "/:page?/sfdsd",
-  "/:page+",
-  "/:page+/fsd/er",
-  "/:page*",
-  "/:page*/werw/yu",
-  "/:page/:fsdf",
-  "/:page/fsdf"
+  "/:page?/:sfdsd",
+  "/:page?/:sfdsd?",
 ]
 
 for (let i = 0; i < ori.length; i++) {
   const path = ori[i];
   const r = path.split('/')
-  console.log(r, calc(path))
+  // console.log(r, calc(path))
 
   // [ '*' ] 100
-  // [ '', ':id' ] 19
-  // [ '', ':page?' ] 19.7
-  // [ '', ':page+' ] 19.8
-  // [ '', ':page*' ] 19.9
-  // [ '', ':page', 'fsdf' ] 19.1
+  // [ '', ':page' ] 19
+  // [ '', 'sfdsd' ] 11
+  // [ '', ':page?' ] 19.09
+  // [ '', ':page?', 'sfdsd' ] 19.19
+  // [ '', ':page?', ':sfdsd' ] 19.99
+  // [ '', ':page?', ':sfdsd?' ] 19.999
 }
 
+
+ori = [
+  '*',
+  "/:page",
+  "/sfdsd",
+  "/:page*",
+  "/:page*/sfdsd",
+]
+
+for (let i = 0; i < ori.length; i++) {
+  const path = ori[i];
+  // console.log(r, calc(path))
+
+  // [ '*' ] 100
+  // [ '', ':page' ] 19
+  // [ '', 'sfdsd' ] 11
+  // [ '', ':page*' ] 19.09
+  // [ '', ':page*', 'sfdsd' ] 19.19
+}
+
+ori = [
+  '*',
+  "/:page",
+  "/sfdsd",
+  "/:page*",
+  "/:page*/sfdsd",
+  "/:page*/:sfdsd",
+  "/:page*/:sfdsd?",
+  "/:page*/:sfdsd*",
+  "/:page*/:sfdsd?/:sfdsd?",
+  "/:page*/:sfdsd*/:sfdsd?",
+  "/:page*/:sfdsd?/:sfdsd*",
+  "/:page*/:sfdsd*/:sfdsd*",
+  "/:page*/:sfdsd?/:sfdsd?/a",
+  "/:page*/:sfdsd*/:sfdsd?/b",
+  "/:page*/:sfdsd?/:sfdsd?/:sfdsd*",
+  "/:page*/:sfdsd*/:sfdsd?/:sfdsd*",
+  "/:page*/:sfdsd?/:sfdsd/:sfdsd*",
+  "/:page*/:sfdsd*/:sfdsd/:sfdsd*",
+  "/:page*/sfdsd/twe",
+  "/:page*/:sfdsd/twe",
+  "/:page?",
+  "/:page?/sfdsd",
+  "/:page?/:sfdsd",
+]
+
+for (let i = 0; i < ori.length; i++) {
+  const path = ori[i];
+  calc(path)
+  // '*' [ '' ] 100
+  // /:page [ '', ':page' ] 19
+  // /sfdsd [ '', 'sfdsd' ] 11
+  // '' [ '' ] 100
+  // /sfdsd [ '', 'sfdsd' ] 11
+  // /:sfdsd [ '', ':sfdsd' ] 19
+  // '' [ '' ] 100
+  // '' [ '' ] 100
+  // '' [ '' ] 100
+  // '' [ '' ] 100
+  // '' [ '' ] 100
+  // '' [ '' ] 100
+  // /a [ '', 'a' ] 11
+  // /b [ '', 'b' ] 11
+  // '' [ '' ] 100
+  // '' [ '' ] 100
+  // /:sfdsd [ '', ':sfdsd' ] 19
+  // /:sfdsd [ '', ':sfdsd' ] 19
+  // /sfdsd/twe [ '', 'sfdsd', 'twe' ] 11.1
+  // /:sfdsd/twe [ '', ':sfdsd', 'twe' ] 19.1
+  // '' [ '' ] 100
+  // /sfdsd [ '', 'sfdsd' ] 11
+  // /:sfdsd [ '', ':sfdsd' ] 19
+}
 
 ori = [
   '*',
@@ -79,30 +150,40 @@ for (let i = 0; i < ori.length; i++) {
 
 ori = [
   '*',
+  '/*',
   "/:id",
   "/:page?",
   "/:page+",
-  "/:page*",
-  "/:icon(\\d+)"
+  "/:page*"
 ]
 
 for (let i = 0; i < ori.length; i++) {
   const path = ori[i];
   const r = path.split('/')
-  // console.log(r, calc(path))
+  // calc(path)
 
-  // [ '*' ] 100
-  // [ '', ':id' ] 19
-  // [ '', ':page?' ] 19
-  // [ '', ':page+' ] 19
-  // [ '', ':page*' ] 19
-  // [ '', ':icon(\\d+)' ] 19
+  // '*' [ '*' ] 100
+  // /:id [ '', ':id' ] 19
+  // '' [ '' ] 100
+  // /:page+ [ '', ':page+' ] 19.009999999999998
+  // '' [ '' ] 100
 }
 
-var re = pathToRegexp('/:foo+')
-let a = re.exec('/')
-let b = re.exec('/a')
-let c = re.exec('/a/a')
-let d = re.exec('/a/a/sdf')
+// var re = pathToRegexp('/:foo+')
+// let a = re.exec('/')
+// let b = re.exec('/a')
+// let c = re.exec('/a/a')
+// let d = re.exec('/a/a/sdf')
 
 // console.log(a, b, c, d)
+
+// re = pathToRegexp('/:page*/fsd/er')
+// a = re.exec('/ss/fsd/')
+
+
+// re = pathToRegexp('/:page+/fsd/er')
+// a = re.exec('/dsf/adf/fsd/er')
+
+re = pathToRegexp('/:page*/a/:fsd*/b')
+a = re.exec('/a/b')
+console.log(a)
